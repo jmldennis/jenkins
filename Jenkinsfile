@@ -5,22 +5,24 @@ pipeline {
     dockerImage = ''
   }
   agent { 
-    dockerfile true
-    //docker { 
-    //  image 'python:3.10'
-    //  args '-p 5005:5005'
-    //    } 
+    docker { 
+      image 'python:3.10'
+      args '-p 5005:5005'
+        } 
   }
   stages {
-    /*stage('Build') {
+    stage('Build') {
       steps {
-      //  sh 'pip install -r requirements.txt'
-        //sh 'apk add libstdc++'
-      //  sh 'python3 ./jenkinsFlask.py'
+        sh 'pip install -r requirements.txt'
+        sh 'apk add libstdc++'
+        sh 'python3 ./jenkinsFlask.py'
       }
-    }*/
+    }
     stage('Test App') {
       steps {
+        echo "${env.NODE_NAME}"
+        sh 'pwd'
+        sh 'uname -a'
         sh 'python3 jenkinsUnittest.py'
       }
       post {
