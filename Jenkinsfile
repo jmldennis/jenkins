@@ -12,13 +12,13 @@ pipeline {
     //    } 
   }
   stages {
-    stage('Build') {
+    /*stage('Build') {
       steps {
       //  sh 'pip install -r requirements.txt'
         //sh 'apk add libstdc++'
       //  sh 'python3 ./jenkinsFlask.py'
       }
-    }
+    }*/
     stage('Test App') {
       steps {
         sh 'python jenkinsUnittest.py'
