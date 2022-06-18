@@ -5,16 +5,16 @@ pipeline {
     dockerImage = ''
   }
   agent { 
-    //dockerfile true
-    docker { 
-      image 'python:3.10'
-      args '-p 5005:5005'
-        } 
+    dockerfile true
+    //docker { 
+    //  image 'python:3.10'
+    //  args '-p 5005:5005'
+    //    } 
   }
   stages {
     stage('Build') {
       steps {
-        sh 'pip install -r requirements.txt'
+        //sh 'pip install -r requirements.txt'
         //sh 'apk add libstdc++'
         sh 'python3 ./jenkinsFlask.py'
       }
