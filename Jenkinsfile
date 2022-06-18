@@ -21,9 +21,6 @@ pipeline {
     //}
     stage('Test App') {
       steps {
-        echo "${env.NODE_NAME}"
-        sh 'pwd'
-        sh 'uname -a'
         sh 'python jenkinsUnittest.py'
       }
       post {
@@ -32,19 +29,6 @@ pipeline {
         }
       } 
     }
-    // Uncomment for SAST lab step 
-    // Commented section starts
-    /*
-    stage('SAS Test') {
-      steps {
-        snykSecurity(
-          snykInstallation: 'SnykV2Plugin',
-          snykTokenId: 'snyktoken',
-          severity: 'medium',
-          failOnIssues: true)
-      }
-    }
-    */
     // Commented section ends 
     stage('Build image') {
       steps{
@@ -69,7 +53,7 @@ pipeline {
     }
     // Uncomment for K8s app diployment step
     // Commented section starts
-    
+    /*
     stage('Deploy Application') {
       agent {
         kubernetes {
@@ -123,7 +107,7 @@ EOF"""
         }
       }
     }
-  
+  */
   // Commented section ends
   }
 }
