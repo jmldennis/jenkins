@@ -21,7 +21,7 @@ pipeline {
     }*/
     stage('Test App') {
       steps {
-        sh 'python jenkinsUnittest.py'
+        sh 'python3 jenkinsUnittest.py'
       }
       post {
         always {
