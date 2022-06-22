@@ -16,7 +16,7 @@ pipeline {
         sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt'
         //sh '. venv/bin/activate'  //source venv/bin/activate
         //sh 'pip install -r requirements.txt --user'
-        sh 'apk add libstdc++'
+        //sh 'apk add libstdc++'
         sh 'python3 ./jenkinsFlask.py'
       }
     }
