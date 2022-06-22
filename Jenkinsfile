@@ -5,8 +5,9 @@ pipeline {
     dockerImage = ''
   }
   agent { 
-    docker { 
-      dockerfile True
+    dockerfile true
+   // docker { 
+
       //image 'python:3.10'
       //args '-p 5005:5005'
         } 
