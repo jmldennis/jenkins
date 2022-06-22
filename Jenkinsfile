@@ -25,7 +25,7 @@ pipeline {
         echo "${env.NODE_NAME}"
         sh 'pwd'
         sh 'uname -a'
-        sh 'python3 jenkinsUnittest.py'
+        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python jenkinsUnittest.py'
       }
       post {
         always {
