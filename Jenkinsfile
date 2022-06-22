@@ -22,10 +22,10 @@ pipeline {
     }
     stage('Test App') {
       steps {
-        echo "${env.NODE_NAME}"
-        sh 'pwd'
-        sh 'uname -a'
-        sh '. venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py'
+        //echo "${env.NODE_NAME}"
+        //sh 'pwd'
+        //sh 'uname -a'
+        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py'
       }
       post {
         always {
