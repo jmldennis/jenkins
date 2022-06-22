@@ -13,7 +13,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsFlask.py &'
+        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt'
+        sh 'python ./jenkinsFlask.py &'
         //sh '. venv/bin/activate'  //source venv/bin/activate
         //sh 'pip install -r requirements.txt --user'
         //sh 'apk add libstdc++'
@@ -34,6 +35,7 @@ pipeline {
       } 
     }
     // Commented section ends 
+    /*
     stage('Build image') {
       steps{
         script {
@@ -55,6 +57,7 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    */
     // Uncomment for K8s app diployment step
     // Commented section starts
     /*
