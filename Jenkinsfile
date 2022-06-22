@@ -6,8 +6,9 @@ pipeline {
   }
   agent { 
     docker { 
-      image 'python:3.10'
-      args '-p 5005:5005'
+      dockerfile True
+      //image 'python:3.10'
+      //args '-p 5005:5005'
         } 
   }
   stages {
@@ -37,7 +38,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build 'jenkins' + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
