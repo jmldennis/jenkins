@@ -14,7 +14,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'python3 -m venv venv'
-        sh '. ./venv/bin/activate'  //source venv/bin/activate
+        sh '. ./var/lib/jenkins/workspace/jenkins_main/venv/bin/activate'  //source venv/bin/activate
         sh 'pip install -r requirements.txt --user'
         sh 'apk add libstdc++'
         sh 'python3 ./jenkinsFlask.py'
