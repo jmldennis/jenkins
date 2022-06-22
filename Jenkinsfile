@@ -5,13 +5,11 @@ pipeline {
     dockerImage = ''
   }
   agent { 
-    dockerfile true
-  }
-    /*docker { 
+    docker { 
       image 'python:3.10'
       args '-p 5005:5005'
-        }*/ 
-  
+        } 
+  }
   stages {
     stage('Build') {
       steps {
