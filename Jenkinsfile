@@ -37,7 +37,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build 'jenkins' + ":$BUILD_NUMBER"
         }
       }
     }
