@@ -13,6 +13,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'python3 -m venv venv'
+        sh 'source venv/bin/activate'
         sh 'pip install -r requirements.txt'
         sh 'apk add libstdc++'
         sh 'python3 ./jenkinsFlask.py'
