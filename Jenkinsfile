@@ -10,17 +10,11 @@ pipeline {
       steps {
         sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt'
         sh 'python ./jenkinsFlask.py &'
-        //sh '. venv/bin/activate'  //source venv/bin/activate
-        //sh 'pip install -r requirements.txt --user'
-        //sh 'apk add libstdc++'
-        //sh 'python ./jenkinsFlask.py'
       }
     }
+
     stage('Test App') {
       steps {
-        //echo "${env.NODE_NAME}"
-        //sh 'pwd'
-        //sh 'uname -a'
         sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py && deactivate'
       }
       post {
@@ -29,7 +23,6 @@ pipeline {
         }
       } 
     }
-    // Commented section ends 
     
     stage('Build image') {
       steps{
@@ -38,6 +31,7 @@ pipeline {
         }
       }
     }
+
     stage('Upload Image to Registry') {
       steps{
         script {
@@ -47,69 +41,11 @@ pipeline {
         }
       }
     }
+
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-    
-    // Uncomment for K8s app diployment step
-    // Commented section starts
-    /*
-    stage('Deploy Application') {
-      agent {
-        kubernetes {
-            cloud 'kubernetes'
-          }
-        }
-        steps {
-          container('kubectl') {
-            sh """cat <<EOF | kubectl apply --validate=false -f -
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: jenkinsFlask
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkinsFlask-Service
-  namespace: jenkinsFlask
-spec:
-  selector:
-    app: jenkinsFlask
-  ports:
-    - protocol: TCP
-      port: 5005
-      targetPort: 5005
-  type: LoadBalancer
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jenkinsFlask-deployment
-  namespace: jenkinsFlask
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: jenkinsFlask
-  template:
-    metadata:
-      labels:
-        app: jenkinsFlask
-    spec:
-      containers:
-      - name: jenkinsFlask
-        image: $registry:$BUILD_NUMBER
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 5000
-EOF"""
-        }
-      }
-    }
-  */
-  // Commented section ends
   }
 }
