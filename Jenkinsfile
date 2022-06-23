@@ -4,9 +4,7 @@ pipeline {
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
-  agent { 
-    dockerfile true
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
@@ -36,7 +34,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build(registry + ":$BUILD_NUMBER")
         }
       }
     }
