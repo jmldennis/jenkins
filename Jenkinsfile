@@ -27,6 +27,7 @@ pipeline {
         //sh 'pwd'
         //sh 'uname -a'
         sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py'
+        sh 'deactivate'
       }
       post {
         always {
@@ -38,7 +39,6 @@ pipeline {
     
     stage('Build image') {
       steps{
-        sh 'deactivate'
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
