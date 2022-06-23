@@ -35,9 +35,10 @@ pipeline {
       } 
     }
     // Commented section ends 
-    /*
+    
     stage('Build image') {
       steps{
+        sh 'deactivate'
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
@@ -57,7 +58,7 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-    */
+    
     // Uncomment for K8s app diployment step
     // Commented section starts
     /*
