@@ -20,7 +20,7 @@ def index():
 
 @app.route('/hello/')
 def hello_world():
-    return 'Hello!\n'
+    return 'Hello World!\n'
 
 @app.route('/hello/<username>') 
 def hello_user(username):
