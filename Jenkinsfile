@@ -41,7 +41,7 @@ pipeline {
         }
       }
     }
-    stage('run image locally'){
+    stage('Run image locally'){
       steps{
         sh "docker run -itd -p 5005:5005 $registry:$BUILD_NUMBER"
       }
