@@ -43,7 +43,7 @@ pipeline {
     }
     stage('run image locally'){
       steps{
-        sh "docker run -itd -p 5005:5005 --name jenkins-docker $registry:$BUILD_NUMBER"
+        sh "docker run -itd -p 5005:5005 $registry:$BUILD_NUMBER"
       }
     }
 
