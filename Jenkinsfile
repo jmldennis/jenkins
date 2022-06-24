@@ -41,11 +41,16 @@ pipeline {
         }
       }
     }
-
-    stage('Remove Unused docker image') {
+    stage('run image locally'){
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker run -itd -p 5005:5000 $registry:$BUILD_NUMBER"
       }
     }
+
+    //stage('Remove Unused docker image') {
+    //  steps{
+    //    sh "docker rmi $registry:$BUILD_NUMBER"
+    //  }
+    //}
   }
 }
