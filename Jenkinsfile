@@ -15,7 +15,7 @@ pipeline {
 
     stage('Test App') {
       steps {
-        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py && deactivate'
+        sh 'python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python ./jenkinsUnittest.py'
       }
       post {
         always {
@@ -24,7 +24,7 @@ pipeline {
       } 
     }
     
-    stage('Build image') {
+    stage('Build Docker Container') {
       steps{
         script {
           dockerImage = docker.build(registry + ":$BUILD_NUMBER")
@@ -32,7 +32,7 @@ pipeline {
       }
     }
 
-    stage('Upload Image to Registry') {
+    stage('Upload Container to Registry') {
       steps{
         script {
           docker.withRegistry('', registryCredential ) {
