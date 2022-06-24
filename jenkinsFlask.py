@@ -7,7 +7,7 @@ port = 5005
 
 #Get Hostname
 host_name = socket.gethostname()
-version = "1.0"
+version = "1.1"
 
 hits = 0
 
